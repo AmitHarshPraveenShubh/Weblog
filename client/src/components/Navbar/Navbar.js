@@ -1,8 +1,8 @@
-import React, {useState} from 'react' ;
-//import {useEffect} from 'redux' ;
+import React, {useEffect, useState} from 'react' ;
 import {Link, useLocation} from 'react-router-dom' ;
 import { AppBar, Avatar, Button, Typography, Toolbar } from '@material-ui/core';
 import {useHistory} from 'react-router-dom';
+import decode from 'jwt-decode';
 import useStyles from './styles';
 import {useDispatch} from 'react-redux';
 import memories from '../../images/memories.png';
@@ -22,12 +22,17 @@ const Navbar = () => {
         setUser(null);
     };
 
-    // useEffect(()=>{
-    //     // eslint-disable-next-line
-    //     const token = user.token;
+     useEffect(()=>{
+        const token = user?.token;
 
-    //     setUser(JSON.parse(localStorage.getItem('profile')));
-    // },[location])
+        if(token) {
+            const decodedToken = decode(token);
+
+            if(decodedToken.exp*1000 < new Date().getTime()) logout();
+        }
+
+        setUser(JSON.parse(localStorage.getItem('profile')));
+     },[location])
 
     return(
     <AppBar className={classes.appBar} position="static" color="inherit">

@@ -1,7 +1,6 @@
 {
   "name": "mern-stack-api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -16,6 +15,10 @@
     "express": "^4.17.1",
     "js": "^0.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.29"
-  }
+    "mongoose": "^5.9.29",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
 }
